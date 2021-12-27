@@ -157,3 +157,42 @@ void transX2X(char num1[],int n,int m,char num2[])
         break;
     }
 }
+
+ #####"6"排序（冒泡，快速，直接插入，选择排序）
+//冒泡排序
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define N 10
+void main()
+{
+    int a[N];
+    int i,j=0,k,t;
+    srand(time(NULL));
+    for(i=0;i<N;i++)
+    a[i]=rand()%51+1;
+    printf("冒泡排序前的数组:");
+    for(i=0;i<N-1;i++)
+    printf("%d ",a[i]);
+    printf("%d\n",a[i]);
+    while(1)
+    {
+    for(i=0;i<N-1;i++)
+    {
+    if(a[i]>a[i+1])
+    {
+        t=a[i];
+        a[i]=a[i+1];
+        a[i+1]=t;
+        j++;
+    }
+    }
+    if(j==0)
+    break;
+    j=0;
+    }
+    printf("冒泡排序后的数组:");
+    for(i=0;i<N-1;i++)
+    printf("%d ",a[i]);
+    printf("%d\n",a[i]);
+}
