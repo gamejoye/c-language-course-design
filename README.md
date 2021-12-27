@@ -100,12 +100,11 @@ void main()
     scanf("%f",&r);
     while(i--)
     {
-        y1=2*a*x-b;
+        y1=2*a*x+b;
         if(fabs(r*y1)<=0.0000000000001)
         break;
         x=x-r*y1;
     }
-    x=-x;
     y=a*x*x+b*x+c;
     printf("%f %f",x,y);
 }
