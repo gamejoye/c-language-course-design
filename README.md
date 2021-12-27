@@ -88,3 +88,24 @@ void main()
     }
     printf("%f\n",sum);
 }
+
+  #####"3"
+#include<stdio.h>
+#include<math.h>
+void main()
+{
+    float a,b,c,y,y1,r,i=100000;
+    float x=0;
+    scanf("%f%f%f",&a,&b,&c);
+    scanf("%f",&r);
+    while(i--)
+    {
+        y1=2*a*x-b;
+        if(fabs(r*y1)<=0.0000000000001)
+        break;
+        x=x-r*y1;
+    }
+    x=-x;
+    y=a*x*x+b*x+c;
+    printf("%f %f",x,y);
+}
