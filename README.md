@@ -73,3 +73,18 @@ float average(int x)
     sum=sum/100;
     return sum;
 }
+
+
+  #####"2".
+  #include<stdio.h>
+void main()
+{
+    float y,x1,x,sum=0;
+    scanf("%f",&x1);
+    for(x=1;x<=2;x=x+x1)
+    {
+        y=1/(x*x+4*x)*x1;
+        sum=sum+y;
+    }
+    printf("%f\n",sum);
+}
