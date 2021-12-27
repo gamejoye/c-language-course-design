@@ -196,3 +196,41 @@ void main()
     printf("%d ",a[i]);
     printf("%d\n",a[i]);
 }
+
+  #####"7"
+  #include<stdio.h>
+#include<math.h> 
+void main()
+{
+    int n,k,i,j,a[10][10],m,l,d;
+    int b[10][9];
+    scanf("%d,%d",&n,&k);
+    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+    scanf("%d",&a[i][j]);
+    for(i=0;i<n;i++)
+    {
+        for(l=0;l<k;)
+        {
+        for(j=0;j<n;j++)
+        {
+            if(d<a[i][j]&&a[i][j]!=0)
+            {
+                d=a[i][j];
+                m=j;
+            }
+        }
+        b[i][l]=m+1;
+        a[i][m]=0;
+        l++;
+        d=0;
+        m=0;
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+    for(j=0;j<k;j++)
+    printf("%d ",b[i][j]);
+    printf("\n");
+    }
+}
