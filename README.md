@@ -108,3 +108,52 @@ void main()
     y=a*x*x+b*x+c;
     printf("%f %f",x,y);
 }
+
+  #####"5"(进制转换)（做的我烦呐）
+#include<stdio.h>
+#include<math.h>
+void transX2X(char num1[],int,int,char num2[]);
+void main()
+{
+    int n,m,i;
+    char num1[256]={'\0'},num2[256]={'\0'};
+    scanf("%s%d%d",num1,&n,&m);
+    transX2X(num1,n,m,num2);
+    for(i=0;num2[i]!='\0';i++);//得到转化完成后的字符串的最后一个字符序数
+    for(i=i-1;i>=0;i--)
+    printf("%c",num2[i]);//需要逆序输出（随便举个简单例子就很明了啦）
+}
+void transX2X(char num1[],int n,int m,char num2[])
+{
+    int i,d,j;
+    int sum=0;
+    for(i=0;num1[i]!='\0';i++);
+    for(j=0,i=i-1;i>=0;i--,j++)
+    {
+        if(num1[i]>'9')
+        num1[i]=num1[i]-39;//用来判断10进制以上的需要转换的数
+        sum=sum+(num1[i]-48)*pow(n,j);
+    }
+    for(i=0;;i++)
+    {
+        d=sum%m;
+        if(d==10)
+        d=97;
+        if(d==11)
+        d=98;
+        if(d==12)
+        d=99;
+        if(d==13)
+        d=100;
+        if(d==14)
+        d=101;
+        if(d==15)
+        d=102;
+        if(d<97)
+        d=d+48;
+        num2[i]=d;
+        sum=sum/m;
+        if(sum==0)
+        break;
+    }
+}
