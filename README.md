@@ -234,3 +234,84 @@ void main()
     printf("\n");
     }
 }
+
+  #####"8"，可恶，我承认我是five
+  #include<stdio.h>
+#include<math.h>
+void paixu(float a[],int n);
+void main()
+{
+    float a[60],b[60],c[60],count;
+    int i,j,k,n,max1=0,min1=1000,max2=0,min2=1000,max3=0,min3=1000,v;
+    float pass[3],average1,average2,average3,sum1=0,sum2=0,sum3=0;
+    float paverage[60];
+    scanf("%d",&n);
+    for(i=0; i<n; i++)
+    {
+        scanf("%f%f%f",&a[i],&b[i],&c[i]);
+        if(a[i]<=min1)//求各科最大和最小
+            min1=a[i];
+        if(a[i]>=max1)
+            max1=a[i];
+        if(b[i]<=min2)
+            min2=b[i];
+        if(b[i]>=max2)
+            max2=b[i];
+        if(c[i]<=min3)
+            min3=c[i];
+        if(c[i]>=max3)
+            max3=c[i];
+        paverage[i]=(a[i]+b[i]+c[i])/3;//计算个人平均分
+        sum1=sum1+a[i];
+        sum2=sum2+b[i];
+        sum3=sum3+c[i];
+    }
+    average1=sum1/n;//计算程序设计平均分
+    average2=sum2/n;//计算英语平均分
+    average3=sum3/n;//计算数学平均分
+    for(i=0; i<n; i++)
+        printf("第%d个同学程序设计:%.2f 英语:%.2f 数学:%.2f 个人平均:%.2f\n",i+1,a[i],b[i],c[i],paverage[i]);
+    printf("程序设计平均分:%.2f 程序设计最高分:%d 程序设计最低分:%d\n",average1,max1,min1);
+    printf("英语平均分:%.2f 英语最高分:%d 英语最低分:%d\n",average2,max2,min2);
+    printf("数学平均分:%.2f 数学最高分:%d 数学最低分:%d\n",average3,max3,min3);
+    for(count=0,i=0; i<n; i++)
+        if(a[i]>=60)
+            count++;
+    pass[0]=count/n;
+    for(count=0,i=0; i<n; i++)
+        if(b[i]>=60)
+            count++;
+    pass[1]=count/n;
+    for(count=0,i=0; i<n; i++)
+        if(c[i]>=60)
+            count++;
+    pass[2]=count/n;
+    printf("程序设计及格率:%f 英语及格率:%f 数学及格率:%f\n",pass[0],pass[1],pass[2]);
+    paixu(paverage,n);
+    for(i=0; i<n; i++)
+        printf("第%d名:%.0f\n",i+1,paverage[i]+1);
+}
+void paixu(float a[],int n)
+{
+    int i=0,j,k,m;
+    float b[60],d=0;
+    while(1)
+    {
+        for(j=0; j<n; j++)
+        {
+            if(a[j]>=d&&a[j]>=0)
+            {
+                d=a[j];
+                m=j;
+            }
+        }
+        a[m]=-1;
+        b[i]=m;
+        d=0;
+        i++;
+        if(i==n)
+            break;
+    }
+    for(i=0; i<n; i++)
+        a[i]=b[i];
+}
