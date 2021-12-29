@@ -147,7 +147,7 @@ float os(int A,int B,int C,int D)
 }
 void main()
 {
-    int i,j,k,a,m[10]={0},ji1,ji2,ji,t=1000,sum[10];
+    int i,j,k,a,m[10]={0},ji1,ji2,ji,t=1000,sum[10],sun[10];
     float min=1001;
     srand(time(NULL));
     a=rand()%51+15;
@@ -170,13 +170,17 @@ void main()
         }
         point[ji1][ji2]=ji+1;
         m[ji]++;
-        sum[ji]=sum[ji]+min;
+        sum[ji]=sum[ji]+ji1;
+        sun[ji]=sun[ji]+ji2;
         min=1001;
     }
     for(j=0;j<k;j++)
     {
         x[j]=(sum[j]+x[j])/(m[j]+1)+0.5;
+        y[j]=(sun[j]+y[j])/(m[j]+1)+0.5;
         sum[j]=0;
+        sun[j]=0;
+        m[j]=0;
     }
     }
     for(i=0;i<40;i++)
@@ -191,7 +195,6 @@ void main()
     printf("\n");
     }
 }
-
   #####"5"(进制转换)（做的我烦呐）
 #include<stdio.h>
 #include<math.h>
