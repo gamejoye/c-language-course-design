@@ -109,6 +109,89 @@ void main()
     printf("%f %f",x,y);
 }
 
+  #####"4" k-means(虽然但是好像不是很好康的样子)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<math.h>
+int x[10],y[10],xe[65]={0},ye[65]={0};
+int point[40][80];
+void randonkk(int a)
+{
+    int i=0,j=0,x0,y0;
+    srand(time(NULL));
+    for(i=0;i<a;i++)
+    {
+        x0=rand()%40;
+        y0=rand()%80;
+        xe[i]=x0;
+        ye[i]=y0;
+    }
+}
+void getpoint(int k,int a)
+{
+    int i,j,m,l;
+	srand(time(NULL));
+    for(i=0;i<k;i++)
+    {
+        m=rand()%a;
+        x[i]=xe[m];
+        y[i]=ye[m];
+    }
+}
+float os(int A,int B,int C,int D)
+{
+    float s;
+    s=sqrt(pow(A-C,2)+pow(B-D,2));
+    return s;
+}
+void main()
+{
+    int i,j,k,a,m[10]={0},ji1,ji2,ji,t=1000,sum[10];
+    float min=1001;
+    srand(time(NULL));
+    a=rand()%51+15;
+    randonkk(a);
+    scanf("%d",&k);
+    getpoint(k,a);
+    while(t--)
+    {
+    for(j=0;j<a;j++)
+    {
+        for(i=0;i<k;i++)
+        {
+        if(min>os(x[i],y[i],xe[j],ye[j]))
+        {
+            min=os(x[i],y[i],xe[j],ye[j]);
+            ji1=xe[j];
+            ji2=ye[j];
+            ji=i;
+        }
+        }
+        point[ji1][ji2]=ji+1;
+        m[ji]++;
+        sum[ji]=sum[ji]+min;
+        min=1001;
+    }
+    for(j=0;j<k;j++)
+    {
+        x[j]=(sum[j]+x[j])/(m[j]+1)+0.5;
+        sum[j]=0;
+    }
+    }
+    for(i=0;i<40;i++)
+    {
+    for(j=0;j<80;j++)
+    {
+    if(point[i][j]!=0)
+    printf("%d",point[i][j]);
+    else
+    printf(" ");
+    }
+    printf("\n");
+    }
+}
+
   #####"5"(进制转换)（做的我烦呐）
 #include<stdio.h>
 #include<math.h>
