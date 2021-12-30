@@ -401,3 +401,151 @@ void paixu(float a[],int n)
     for(i=0; i<n; i++)
         a[i]=b[i];
 }
+
+  #####"9"(深化部分)（推箱子啦）(并没有很完美)
+//难度其实也只有2，3，4，5可以选啦
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<time.h>
+#define n 20
+void obstacles(char a[][n],int j);
+void newsites(char ch);
+int date1=1; //箱子纵坐标
+int date2=1; //箱子横坐标
+int datep1=0; //人纵坐标
+int datep2=0; //人横坐标
+int count=0;//步数
+char a[n][n]= {'\0'};
+void main()
+{
+    int c,d,i,j;
+    char ch;
+    srand(time(NULL));
+    c=rand()%(n-1);
+    a[c][n-1]=']';//生成出口
+    a[datep1][datep2]='P';//生成人
+    a[date1][date2]='O';//生成箱子
+    printf("请输入难度关卡:\n");
+    scanf("%d",&d);
+    getchar();
+    obstacles(a,d);//生成障碍物
+    for(i=0; i<n-1; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+                if(a[i][j]!='\0')
+                printf("%c",a[i][j]);
+                else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    printf("%d\n",count);//生成初始画面
+    while(1)
+    {
+        ch=getchar();
+        count++;
+        getchar();
+        system("clear");
+        newsites(ch);
+        //判断游戏失败或成功
+        if(date2==n-1&&date1==c)
+        {
+            printf("sucessed!\n");
+            break;
+        }
+        if((date1==-1||date1==n-1)&&date1!=c)
+        {
+            printf("falied!\n");
+            break;
+        }
+        //否则则继续进行下去
+        for(i=0; i<n-1; i++)
+        {
+            for(j=0; j<n; j++)
+            {
+                if(a[i][j]!='\0')
+                    printf("%c",a[i][j]);
+                else
+                    printf(" ");
+            }
+            printf("\n");
+        }
+        printf("%d\n",count);//生成画面
+    }
+}
+void obstacles(char a[][n],int d)
+{
+    int j=3,k,l;
+    srand(time(NULL));
+    while(d--)
+    {
+        l=rand()%n;
+            for(k=0; k<n; k++)
+                if(k!=l)
+                    a[k][j]='|';
+        j=j+3;
+    }
+}
+void newsites(char ch)
+{
+    int old1=date1,old2=date2;
+    int oldp1=datep1,oldp2=datep2;
+    if(ch=='a')
+    {
+        if(a[datep1][datep2-1]=='|')//如果小人往左走是墙壁，计数不变
+        count--;
+        else
+        {
+        if(datep2==date2+1&&datep1==date1)//如果小人在箱子的右边
+        {
+            if(a[date1][date2-1]!='|')//如果箱子的左边不是是墙壁
+            {
+                date2--;
+                datep2--;
+            }
+            else//如果小人箱子的左边是墙壁，计数不变
+            count--;
+        }
+        else
+        datep2--;
+        }
+    }
+    if(ch=='d')
+    {
+        if(a[datep1][datep2+1]=='|')//如果小人往右走是墙壁，计数不变
+        count--;
+        else
+        {
+        if(datep2==date2-1&&datep1==date1)//如果小人在箱子的左边
+        {
+            if(a[date1][date2+1]!='|')//如果箱子的右边不是是墙壁
+            {
+                date2++;
+                datep2++;
+            }
+            else//如果小人箱子的右边是墙壁，计数不变
+            count--;
+        }
+        else
+        datep2++;
+        }
+    }
+    if(ch=='s')
+    {
+        if(datep1==date1-1&&datep2==date2)//如果小人在箱子的上边，箱子往下一个单位
+            date1++;
+        datep1++;//人往下一个单位
+    }
+    if(ch=='w')
+    {
+        if(datep1==date1+1&&datep2==date2)//如果小人在箱子的下边，箱子往上一个单位
+            date1--;
+        datep1--;//人往上一个单位
+    }
+    a[old1][old2]='\0';
+    a[oldp1][oldp2]='\0';//清空原来的人和箱子
+    a[datep1][datep2]='P';
+    a[date1][date2]='O';//将新的位置赋予人和箱子
+}
