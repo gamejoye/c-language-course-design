@@ -76,7 +76,7 @@ float average(int x)
 
 
   #####"2".
-  #include<stdio.h>
+#include<stdio.h>
 void main()
 {
     float y,x1,x,sum=0;
@@ -284,7 +284,7 @@ void main()
 }
 
   #####"7"
-  #include<stdio.h>
+#include<stdio.h>
 #include<math.h> 
 void main()
 {
@@ -322,7 +322,7 @@ void main()
 }
 
   #####"8"，可恶，我承认我是five
-  #include<stdio.h>
+#include<stdio.h>
 #include<math.h>
 void paixu(float a[],int n);
 void main()
