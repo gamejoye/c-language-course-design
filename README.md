@@ -122,21 +122,36 @@ void randonkk(int a)
     srand(time(NULL));
     for(i=0;i<a;i++)
     {
-        x0=rand()%40;
-        y0=rand()%80;
+        x0=rand()%41;
+        y0=rand()%81;
         xe[i]=x0;
         ye[i]=y0;
     }
 }
 void getpoint(int k,int a)
 {
-    int i,j,m,l;
+    int i,j,m,v;
+    int l[10];
 	srand(time(NULL));
     for(i=0;i<k;i++)
     {
+        v=0;
         m=rand()%a;
-        x[i]=xe[m];
-        y[i]=ye[m];
+        for(j=0;j<i;j++)
+        {
+            if(l[j]==m)
+            {
+                v=1;
+                break;
+            }
+        }
+        if(v==1)
+        {
+            i--;
+            continue;
+        }
+        l[i]=x[i]=xe[m];
+        l[i]=y[i]=ye[m];
     }
 }
 float os(int A,int B,int C,int D)
@@ -147,11 +162,12 @@ float os(int A,int B,int C,int D)
 }
 void main()
 {
-    int i,j,k,a,m[10]={0},ji1,ji2,ji,t=1000,sum[10],sun[10];
-    float min=1001;
+    int i,j,k,a,m[10]={0},ji1,ji2,ji,t=1000,sum[10]={0},sun[10]={0};
+    float min=10001;
     srand(time(NULL));
     a=rand()%51+15;
     randonkk(a);
+    printf("请输入k值:");
     scanf("%d",&k);
     getpoint(k,a);
     while(t--)
@@ -172,7 +188,7 @@ void main()
         m[ji]++;
         sum[ji]=sum[ji]+ji1;
         sun[ji]=sun[ji]+ji2;
-        min=1001;
+        min=10001;
     }
     for(j=0;j<k;j++)
     {
